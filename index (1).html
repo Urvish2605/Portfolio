@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — B.Tech Cyber Security Student</title>
+
+<!-- Google Fonts: Space Grotesk (display), Inter (body), IBM Plex Mono (labels / terminal accents) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#FAFAF7;
+    --bg-alt:#F1F0EB;
+    --ink:#16181B;
+    --muted:#63666B;
+    --line:#E2E0D8;
+    --accent:#1E3A5F;   /* deep ink-blue, primary accent */
+    --accent-soft:#7FA7A0; /* muted sage/mint, secondary accent used sparingly */
+    --card:#FFFFFF;
+    --radius:10px;
+    --max:1080px;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    letter-spacing:-0.02em;
+    color:var(--ink);
+  }
+
+  .mono{
+    font-family:'IBM Plex Mono', monospace;
+  }
+
+  a{ color:inherit; text-decoration:none; }
+
+  img{ max-width:100%; display:block; }
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  section{
+    padding:96px 0;
+    border-bottom:1px solid var(--line);
+  }
+  section:last-of-type{ border-bottom:none; }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(250,250,247,0.85);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding-top:20px;
+    padding-bottom:20px;
+  }
+  .logo{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:15px;
+    font-weight:500;
+    color:var(--accent);
+  }
+  .logo span{ color:var(--ink); }
+  .nav-links{
+    display:flex;
+    gap:32px;
+    list-style:none;
+    font-size:14px;
+    font-weight:500;
+  }
+  .nav-links a{
+    color:var(--muted);
+    transition:color .2s ease;
+    position:relative;
+  }
+  .nav-links a:hover{ color:var(--ink); }
+  .nav-toggle{ display:none; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding-top:120px;
+    padding-bottom:120px;
+    border-bottom:1px solid var(--line);
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.3fr 0.7fr;
+    gap:64px;
+    align-items:center;
+  }
+  .prompt-line{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--accent-soft);
+    margin-bottom:18px;
+    display:flex;
+    align-items:center;
+    gap:4px;
+  }
+  .cursor{
+    display:inline-block;
+    width:8px;
+    height:16px;
+    background:var(--accent);
+    animation:blink 1s steps(2, start) infinite;
+  }
+  @keyframes blink{ to{ visibility:hidden; } }
+
+  .hero h1{
+    font-size:clamp(36px, 5vw, 58px);
+    line-height:1.08;
+    margin-bottom:20px;
+  }
+  .hero h1 .accent{ color:var(--accent); }
+
+  .hero p.lede{
+    font-size:17px;
+    color:var(--muted);
+    max-width:520px;
+    margin-bottom:32px;
+  }
+
+  .btn-row{ display:flex; gap:14px; flex-wrap:wrap; }
+
+  .btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    padding:13px 22px;
+    border-radius:6px;
+    border:1px solid var(--accent);
+    transition:all .2s ease;
+    display:inline-block;
+  }
+  .btn-primary{
+    background:var(--accent);
+    color:#fff;
+  }
+  .btn-primary:hover{ background:#16304f; }
+  .btn-secondary{
+    background:transparent;
+    color:var(--accent);
+  }
+  .btn-secondary:hover{ background:var(--bg-alt); }
+
+  /* hero side card - decorative status panel */
+  .hero-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:24px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    color:var(--muted);
+  }
+  .hero-card .row{
+    display:flex;
+    justify-content:space-between;
+    padding:8px 0;
+    border-bottom:1px dashed var(--line);
+  }
+  .hero-card .row:last-child{ border-bottom:none; }
+  .hero-card .row span:first-child{ color:var(--ink); }
+  .status-dot{
+    display:inline-block;
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:var(--accent-soft);
+    margin-right:6px;
+  }
+
+  /* ---------- SECTION HEADS ---------- */
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    margin-bottom:48px;
+  }
+  .section-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--accent-soft);
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+  }
+  .section-head h2{ font-size:28px; }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns:220px 1fr;
+    gap:56px;
+    align-items:start;
+  }
+  .avatar-frame{
+    width:220px;
+    height:220px;
+    border-radius:50%;
+    overflow:hidden;
+    border:1px solid var(--line);
+    background:var(--bg-alt);
+  }
+  .avatar-frame img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+  .about-text p{ color:var(--muted); margin-bottom:16px; max-width:600px; }
+  .about-text p strong{ color:var(--ink); }
+
+  .tag-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:24px;
+  }
+  .tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    padding:6px 12px;
+    border:1px solid var(--line);
+    border-radius:100px;
+    color:var(--muted);
+    background:var(--bg-alt);
+  }
+
+  /* ---------- EDUCATION TIMELINE ---------- */
+  .timeline{
+    position:relative;
+    padding-left:32px;
+    border-left:2px solid var(--line);
+  }
+  .t-item{
+    position:relative;
+    padding-bottom:44px;
+  }
+  .t-item:last-child{ padding-bottom:0; }
+  .t-item::before{
+    content:"";
+    position:absolute;
+    left:-38px;
+    top:4px;
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:var(--bg);
+    border:2px solid var(--accent);
+  }
+  .t-year{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    color:var(--accent-soft);
+    margin-bottom:6px;
+    display:block;
+  }
+  .t-item h3{ font-size:19px; margin-bottom:4px; }
+  .t-item p{ color:var(--muted); font-size:15px; }
+
+  /* ---------- CERTIFICATIONS ---------- */
+  .cert-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:24px;
+  }
+  .cert-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    overflow:hidden;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .cert-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 12px 28px rgba(20,20,20,0.06);
+  }
+  .cert-thumb{
+    width:100%;
+    aspect-ratio:4/3;
+    background:var(--bg-alt);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-bottom:1px solid var(--line);
+  }
+  .cert-thumb img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+  .cert-body{ padding:18px 20px 22px; }
+  .cert-body h3{ font-size:16px; margin-bottom:4px; }
+  .cert-body p{
+    font-size:13.5px;
+    color:var(--muted);
+    font-family:'IBM Plex Mono', monospace;
+  }
+
+  /* ---------- SKILLS ---------- */
+  .skills-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:36px;
+  }
+  .skill-group h3{
+    font-size:15px;
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--accent);
+    margin-bottom:16px;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+  }
+  .skill-list{ list-style:none; }
+  .skill-list li{
+    display:flex;
+    justify-content:space-between;
+    padding:10px 0;
+    border-bottom:1px solid var(--line);
+    font-size:14.5px;
+    color:var(--muted);
+  }
+  .skill-list li span:first-child{ color:var(--ink); }
+  .skill-list li:last-child{ border-bottom:none; }
+
+  /* ---------- CONTACT ---------- */
+  .contact-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:32px;
+  }
+  .contact-inner h2{ font-size:32px; max-width:480px; }
+  .contact-links{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+  }
+  .contact-links a{
+    color:var(--muted);
+    border-bottom:1px solid transparent;
+    transition:color .2s ease, border-color .2s ease;
+  }
+  .contact-links a:hover{
+    color:var(--accent);
+    border-color:var(--accent);
+  }
+
+  footer{
+    padding:28px 0;
+    text-align:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--muted);
+  }
+
+  /* ---------- REVEAL ANIMATION ---------- */
+  .reveal{
+    opacity:0;
+    transform:translateY(16px);
+    transition:opacity .6s ease, transform .6s ease;
+  }
+  .reveal.visible{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1; transform:none; transition:none; }
+    .cursor{ animation:none; }
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:840px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .about-grid{ grid-template-columns:1fr; }
+    .avatar-frame{ width:160px; height:160px; }
+    .cert-grid{ grid-template-columns:repeat(2, 1fr); }
+    .skills-grid{ grid-template-columns:1fr; }
+  }
+
+  @media (max-width:600px){
+    section{ padding:64px 0; }
+    .wrap{ padding:0 20px; }
+    .nav-links{
+      position:fixed;
+      top:64px;
+      left:0;
+      right:0;
+      background:var(--bg);
+      border-bottom:1px solid var(--line);
+      flex-direction:column;
+      gap:0;
+      padding:8px 20px 16px;
+      display:none;
+    }
+    .nav-links.open{ display:flex; }
+    .nav-links a{
+      padding:12px 0;
+      border-bottom:1px solid var(--line);
+      width:100%;
+    }
+    .nav-toggle{
+      display:block;
+      font-family:'IBM Plex Mono', monospace;
+      font-size:13px;
+      background:none;
+      border:1px solid var(--line);
+      border-radius:6px;
+      padding:8px 12px;
+      color:var(--ink);
+      cursor:pointer;
+    }
+    .cert-grid{ grid-template-columns:1fr; }
+    .contact-inner{ flex-direction:column; align-items:flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a href="#top" class="logo">$<span>whoami</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#certifications">Certifications</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">menu</button>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="prompt-line">
+          <span>guest@urvish:~$</span> <span>whoami</span><span class="cursor"></span>
+        </div>
+        <h1>Hi, I'm <span class="accent">Urvish Punmiya</span> —<br>building &amp; breaking things<br>in code and security.</h1>
+        <p class="lede">
+          B.Tech Cyber Security student, 2nd year, at Shah and Anchor Kutchhi Engineering College.
+          Passionate about software development and figuring out how systems can be made — and made secure.
+        </p>
+        <div class="btn-row">
+          <a href="#certifications" class="btn btn-primary">View certifications</a>
+          <a href="#contact" class="btn btn-secondary">Get in touch</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="row"><span>role</span><span>Cyber Security Student</span></div>
+        <div class="row"><span>college</span><span>SAKEC</span></div>
+        <div class="row"><span>year</span><span>2nd Year, B.Tech</span></div>
+        <div class="row"><span>focus</span><span>Software Dev + Security</span></div>
+        <div class="row"><span>status</span><span><span class="status-dot"></span>Open to opportunities</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ABOUT ================= -->
+  <section id="about">
+    <div class="wrap about-grid">
+      <div class="reveal">
+        <div class="avatar-frame">
+          <!-- PROFILE PICTURE PLACEHOLDER
+               Replace src below with your own photo, e.g. "images/profile.jpg"
+               Recommended: square image, at least 400x400px, centered on your face -->
+          <img src="https://via.placeholder.com/400x400.png?text=Profile+Photo" alt="Profile photo placeholder">
+        </div>
+      </div>
+      <div class="about-text reveal">
+        <span class="section-tag">// about</span>
+        <h2 style="margin:10px 0 20px;">A bit about me</h2>
+        <p>
+          I'm currently a <strong>2nd year B.Tech student in Cyber Security</strong> at
+          <strong>Shah and Anchor Kutchhi Engineering College</strong>. I'm passionate about
+          software development and enjoy learning how applications are built end to end —
+          from writing clean code to understanding how to secure it.
+        </p>
+        <p>
+          I like exploring both sides of the same coin: building software and understanding
+          the vulnerabilities that can affect it. Outside of coursework, I'm continually
+          picking up new tools, frameworks, and security concepts through certifications
+          and personal projects.
+        </p>
+        <div class="tag-row">
+          <span class="tag">Cyber Security</span>
+          <span class="tag">Software Development</span>
+          <span class="tag">Problem Solving</span>
+          <span class="tag">Lifelong Learner</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= EDUCATION ================= -->
+  <section id="education">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="section-tag">// education</span>
+        <h2>My academic path</h2>
+      </div>
+
+      <div class="timeline">
+        <div class="t-item reveal">
+          <span class="t-year mono">2026 — Present</span>
+          <h3>B.Tech in Cyber Security</h3>
+          <p>Shah and Anchor Kutchhi Engineering College · Currently in 2nd Year</p>
+        </div>
+        <div class="t-item reveal">
+          <span class="t-year mono">11th – 12th</span>
+          <h3>Higher Secondary Education</h3>
+          <p>D.G. Ruparel College</p>
+        </div>
+        <div class="t-item reveal">
+          <span class="t-year mono">Up to 10th</span>
+          <h3>Secondary Education</h3>
+          <p>Sacred Heart High School</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CERTIFICATIONS ================= -->
+  <section id="certifications">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="section-tag">// certifications</span>
+        <h2>Certifications</h2>
+      </div>
+
+      <div class="cert-grid">
+
+        <!-- CERTIFICATION CARD 1 -->
+        <div class="cert-card reveal">
+          <div class="cert-thumb">
+            <!-- CERTIFICATION IMAGE PLACEHOLDER 1
+                 Replace src with a screenshot/scan of your certificate,
+                 e.g. "images/cert-1.jpg" -->
+            <img src="C:\Users\volos\Desktop\Coding\portfolio\Screenshot 2026-08-17 093949.png" alt="Certificate 1 placeholder">
+          </div>
+          <div class="cert-body">
+            <h3>Computer Architecture</h3>
+            <p>Saylor Academy · 2026</p>
+          </div>
+        </div>
+
+        <!-- CERTIFICATION CARD 2 -->
+        <div class="cert-card reveal">
+          <div class="cert-thumb">
+            <!-- CERTIFICATION IMAGE PLACEHOLDER 2
+                 Replace src with a screenshot/scan of your certificate,
+                 e.g. "images/cert-2.jpg" -->
+            <img src="C:\Users\volos\Desktop\Coding\portfolio\Screenshot 2026-08-17 115545.png" alt="Certificate 2 placeholder">
+          </div>
+          <div class="cert-body">
+            <h3>CCNA: Introduction to Networks</h3>
+            <p>Cisco Netacad · 2026</p>
+          </div>
+        </div>
+
+        <!-- CERTIFICATION CARD 3 -->
+        <div class="cert-card reveal">
+          <div class="cert-thumb">
+            <!-- CERTIFICATION IMAGE PLACEHOLDER 3
+                 Replace src with a screenshot/scan of your certificate,
+                 e.g. "images/cert-3.jpg" -->
+            <img src="C:\Users\volos\Desktop\Coding\portfolio\Screenshot 2026-08-17 115736.png" alt="Certificate 3 placeholder">
+          </div>
+          <div class="cert-body">
+            <h3>Complete UNIX & Linux OS fundamentals training</h3>
+            <p>Infosys Springboard · 2026</p>
+          </div>
+        </div>
+
+        <!-- CERTIFICATION CARD 4 -->
+        <div class="cert-card reveal">
+          <div class="cert-thumb">
+            <!-- CERTIFICATION IMAGE PLACEHOLDER 4
+                 Replace src with a screenshot/scan of your certificate,
+                 e.g. "images/cert-4.jpg" -->
+            <img src="C:\Users\volos\Desktop\Coding\portfolio\Screenshot 2026-08-17 120038.png" alt="Certificate 4 placeholder">
+          </div>
+          <div class="cert-body">
+            <h3>Cybersecurity Essentials</h3>
+            <p>Cisco Netacad · 2026</p>
+          </div>
+        </div>
+
+        <!-- CERTIFICATION CARD 5 -->
+        <div class="cert-card reveal">
+          <div class="cert-thumb">
+            <!-- CERTIFICATION IMAGE PLACEHOLDER 5
+                 Replace src with a screenshot/scan of your certificate,
+                 e.g. "images/cert-5.jpg" -->
+            <img src="C:\Users\volos\Desktop\Coding\portfolio\Screenshot 2026-08-17 120120.png" alt="Certificate 5 placeholder">
+          </div>
+          <div class="cert-body">
+            <h3>C Essentials 1</h3>
+            <p>Cisco Netacad · 2026</p>
+          </div>
+        </div>
+
+        <!-- CERTIFICATION CARD 6 -->
+        <div class="cert-card reveal">
+          <div class="cert-thumb">
+            <!-- CERTIFICATION IMAGE PLACEHOLDER 6
+                 Replace src with a screenshot/scan of your certificate,
+                 e.g. "images/cert-6.jpg" -->
+            <img src="C:\Users\volos\Desktop\Coding\portfolio\Screenshot 2026-08-17 120356.png" alt="Certificate 6 placeholder">
+          </div>
+          <div class="cert-body">
+            <h3>MATLAB onramp</h3>
+            <p>MathWorks · 2026</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SKILLS ================= -->
+  <section id="skills">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="section-tag">// skills</span>
+        <h2>What I work with</h2>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-group reveal">
+          <h3>Development</h3>
+          <ul class="skill-list">
+            <li><span>Programming Fundamentals</span><span>C / Python / Java</span></li>
+            <li><span>Web Basics</span><span>HTML / CSS / JS</span></li>
+            <li><span>Version Control</span><span>Git &amp; GitHub</span></li>
+            <li><span>Problem Solving</span><span>DSA</span></li>
+          </ul>
+        </div>
+        <div class="skill-group reveal">
+          <h3>Security</h3>
+          <ul class="skill-list">
+            <li><span>Networking Basics</span><span>TCP/IP, OSI Model</span></li>
+            <li><span>Security Concepts</span><span>CIA Triad, Threats</span></li>
+            <li><span>Tools</span><span>Learning in progress</span></li>
+            <li><span>Mindset</span><span>Curious &amp; Analytical</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section id="contact">
+    <div class="wrap contact-inner">
+      <div class="reveal">
+        <span class="section-tag">// contact</span>
+        <h2 style="margin-top:10px;">Let's connect — always happy<br>to talk security or software.</h2>
+      </div>
+      <div class="contact-links reveal">
+        <a href="mailto:urvishj@gmail.com">urvishj@gmail.com</a>
+        <a href="https://linkedin.com/in/urvish-punmiya-01b7bb386" target="_blank" rel="noopener">linkedin.com/in/urvish-punmiya-01b7bb386</a>
+        <a href="https://github.com/Urvish2605" target="_blank" rel="noopener">github.com/Urvish2605</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  &copy; <span id="year"></span> 
+</footer>
+
+<script>
+  // Set current year in footer
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+  // Close mobile nav after clicking a link
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => navLinks.classList.remove('open'));
+  });
+
+  // Scroll-reveal animation for sections
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
